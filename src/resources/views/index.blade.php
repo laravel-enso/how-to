@@ -40,7 +40,7 @@
                 <h5>{{ __('There are no uploaded videos yet') }}</h5>
             </div>
             <div class="text-center"
-                v-if="!filteredVideos.length">
+                v-if="!filteredVideos.length && this.videos.length">
                 <h5>{{ __('There are no videos that match the selected tag(s)') }}</h5>
             </div>
             <div class="col-md-6"

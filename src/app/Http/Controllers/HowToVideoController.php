@@ -23,7 +23,7 @@ class HowToVideoController extends Controller
 
     public function show(HowToVideo $howToVideo)
     {
-    	return $this->service->show($howToVideo);
+        return $this->service->show($howToVideo);
     }
 
     public function store(ValidateVideoRequest $request, HowToVideo $video)
@@ -33,11 +33,11 @@ class HowToVideoController extends Controller
 
     public function update(ValidateVideoRequest $request, HowToVideo $howToVideo)
     {
-    	return $this->service->update($request, $howToVideo);
+        return $this->service->update($request, $howToVideo);
     }
 
     public function destroy(HowToVideo $howToVideo)
-	{
-		return $this->service->destroy($howToVideo);
-	}
+    {
+        return $this->service->destroy($howToVideo);
+    }
 }

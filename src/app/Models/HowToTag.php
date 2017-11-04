@@ -3,7 +3,6 @@
 namespace LaravelEnso\HowToVideos\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\HowToVideos\app\Models\HowToVideo;
 
 class HowToTag extends Model
 {
@@ -11,6 +10,6 @@ class HowToTag extends Model
 
     public function videos()
     {
-    	return $this->belongsToMany(HowToVideo::class);
+        return $this->belongsToMany(HowToVideo::class);
     }
 }

@@ -3,7 +3,6 @@
 namespace LaravelEnso\HowToVideos\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\HowToVideos\app\Models\HowToTag;
 
 class HowToVideo extends Model
 {
@@ -18,6 +17,6 @@ class HowToVideo extends Model
 
     public function getTagListAttribute()
     {
-    	return $this->tags()->pluck('id');
+        return $this->tags()->pluck('id');
     }
 }

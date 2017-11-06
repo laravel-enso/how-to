@@ -14,7 +14,7 @@ class ValidateVideoRequest extends FormRequest
     public function rules()
     {
         return [
-            'file_0'      => 'mimetypes:video/avi,video/mpeg,video/quicktime',
+            'file_0'      => 'mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
             'description' => 'required|max:255',
         ];
     }

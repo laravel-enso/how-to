@@ -129,7 +129,8 @@
                 filteredVideos() {
                     return this.tags.length === 0
                         ? this.videos
-                        : this.videos.filter(video => video.tagList.filter(tag => this.tags.includes(tag)).length);
+                        : this.videos.filter(video => this.tags.length ===
+                            video.tagList.filter(tag => this.tags.includes(tag)).length);
                 },
                 filteredTags() {
                     return this.tag

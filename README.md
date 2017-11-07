@@ -8,6 +8,10 @@
 
 How-to video manager for Laravel Enso.
 
+[![Watch the demo](https://laravel-enso.github.io/howtovideos/screenshots/Selection_112_thumb.png)](https://laravel-enso.github.io/howtovideos/videos/demo.webm)
+
+<sup>click on the photo to view a short demo in compatible browsers</sup>
+
 ### Features
 
 Allows you to add videos to your application, to show users how to perform a specific action, demonstrate a feature, 

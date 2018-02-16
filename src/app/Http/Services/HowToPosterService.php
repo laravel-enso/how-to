@@ -74,8 +74,8 @@ class HowToPosterService
 
     private function optimize($files)
     {
-        (new ImageTransformer($files))
-            ->resize(config('documents.imageWidth'), config('documents.imageHeight'))
+        (new ImageTransformer(collect($files)->first()))
+            ->width(640)
             ->optimize();
     }
 }

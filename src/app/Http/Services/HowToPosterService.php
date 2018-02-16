@@ -5,7 +5,7 @@ namespace LaravelEnso\HowToVideos\app\Http\Services;
 use Illuminate\Http\Request;
 use LaravelEnso\FileManager\Classes\FileManager;
 use LaravelEnso\HowToVideos\app\Models\HowToVideo;
-use LaravelEnso\ImageTransformer\Classes\ImageTransformer;
+use LaravelEnso\ImageTransformer\app\Classes\ImageTransformer;
 
 class HowToPosterService
 {

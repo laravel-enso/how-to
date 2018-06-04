@@ -21,12 +21,12 @@ class AppServiceProvider extends ServiceProvider
     public function setPublishes()
     {
         $this->publishes([
-            __DIR__.'/storage/app' => storage_path('app'),
+            __DIR__.'/storage/app'         => storage_path('app'),
             __DIR__.'/resources/assets/js' => resource_path('assets/js'),
         ], 'howToVideos-assets');
 
         $this->publishes([
-            __DIR__.'/storage/app' => storage_path('app'),
+            __DIR__.'/storage/app'         => storage_path('app'),
             __DIR__.'/resources/assets/js' => resource_path('assets/js'),
         ], 'enso-assets');
     }

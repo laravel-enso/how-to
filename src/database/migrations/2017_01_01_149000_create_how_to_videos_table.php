@@ -9,9 +9,10 @@ class CreateHowToVideosTable extends Migration
     {
         Schema::create('how_to_videos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('description');
-            $table->string('original_name');
-            $table->string('saved_name');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->string('video_original_name');
+            $table->string('video_saved_name');
             $table->string('poster_original_name')->nullable();
             $table->string('poster_saved_name')->nullable();
             $table->timestamps();

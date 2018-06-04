@@ -5,27 +5,27 @@ use LaravelEnso\StructureManager\app\Classes\StructureMigration;
 class CreateStructureForHowToVideos extends StructureMigration
 {
     protected $permissionGroup = [
-        'name' => 'howToVideos', 'description' => 'How To Videos permissions group',
+        'name' => 'howTo', 'description' => 'How To Videos permissions group',
     ];
 
     protected $permissions = [
-        ['name' => 'howToVideos.index', 'description' => 'How to videos index page', 'type' => 0, 'default' => false],
-        ['name' => 'howToVideos.show', 'description' => 'Play video', 'type' => 0, 'default' => false],
-        ['name' => 'howToVideos.store', 'description' => 'Upload how to video', 'type' => 1, 'default' => false],
-        ['name' => 'howToVideos.update', 'description' => 'Update how to video params', 'type' => 1, 'default' => false],
-        ['name' => 'howToVideos.destroy', 'description' => 'Delete how to video', 'type' => 1, 'default' => false],
+        ['name' => 'howTo.videos.index', 'description' => 'How to videos index page', 'type' => 0, 'is_default' => false],
+        ['name' => 'howTo.videos.show', 'description' => 'Play video', 'type' => 0, 'is_default' => false],
+        ['name' => 'howTo.videos.store', 'description' => 'Upload how to video', 'type' => 1, 'is_default' => false],
+        ['name' => 'howTo.videos.update', 'description' => 'Update how to video params', 'type' => 1, 'is_default' => false],
+        ['name' => 'howTo.videos.destroy', 'description' => 'Delete how to video', 'type' => 1, 'is_default' => false],
 
-        ['name' => 'howToTags.index', 'description' => 'How to tags index page', 'type' => 0, 'default' => false],
-        ['name' => 'howToTags.store', 'description' => 'Store new how to tag', 'type' => 1, 'default' => false],
-        ['name' => 'howToTags.update', 'description' => 'Update how to tag', 'type' => 1, 'default' => false],
-        ['name' => 'howToTags.destroy', 'description' => 'Delete how to tag', 'type' => 1, 'default' => false],
+        ['name' => 'howTo.tags.index', 'description' => 'Tags index page', 'type' => 0, 'is_default' => false],
+        ['name' => 'howTo.tags.store', 'description' => 'Store new tag', 'type' => 1, 'is_default' => false],
+        ['name' => 'howTo.tags.update', 'description' => 'Update tag', 'type' => 1, 'is_default' => false],
+        ['name' => 'howTo.tags.destroy', 'description' => 'Delete tag', 'type' => 1, 'is_default' => false],
 
-        ['name' => 'howToPosters.store', 'description' => 'Store poster for how to video', 'type' => 1, 'default' => false],
-        ['name' => 'howToPosters.show', 'description' => 'Show poster for how to video', 'type' => 0, 'default' => false],
-        ['name' => 'howToPosters.destroy', 'description' => 'Delete poster for how to video', 'type' => 1, 'default' => false],
+        ['name' => 'howTo.posters.store', 'description' => 'Store new poster', 'type' => 1, 'is_default' => false],
+        ['name' => 'howTo.posters.show', 'description' => 'Show poster', 'type' => 0, 'is_default' => false],
+        ['name' => 'howTo.posters.destroy', 'description' => 'Delete poster', 'type' => 1, 'is_default' => false],
     ];
 
     protected $menu = [
-        'name' => 'How To Videos', 'icon' => 'fa fa-fw fa-video-camera', 'link' => 'howToVideos', 'has_children' => false,
+        'name' => 'How To Videos', 'icon' => 'video', 'link' => 'howTo.videos.index', 'has_children' => false, 'order_index' => 999,
     ];
 }

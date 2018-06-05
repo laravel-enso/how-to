@@ -18,9 +18,10 @@ Allows you to add videos to your application, to show users how to perform a spe
 present a process flow, etc. This is a complementary package to [Tutorial Manager](https://github.com/laravel-enso/TutorialManager).
  
  You can:
- * upload media clips from your computer
+ * upload media clips from your computer, setting a title and a description
  * optionally add a better caption picture for each video
- * tag the clips and filter them using the tags 
+ * optionally tag the clips and then filter them using the tags
+ * permissions dependent controls, where regular users can only view the videos. 
 
 ### Installation
 
@@ -37,7 +38,7 @@ present a process flow, etc. This is a complementary package to [Tutorial Manage
 ```
 Vue.component('howToVideo', require('./vendor/laravel-enso/components/howToVideos/HowToVideo.vue'));
 ```
-- install the JS `vue-video-player video.js` dependencies with npm
+- install the JS `vue-video-player video.js` dependencies using npm (`npm install vue-video-player video.js`)
  
 ### Notes
 

@@ -165,7 +165,7 @@ export default {
                 }).catch(error => this.handleError(error));
         },
         removeTag(tag) {
-            const index = this.video.tagList.findIndex(({ id }) => id === tag.id);
+            const index = this.video.tagList.findIndex(id => id === tag.id);
             this.video.tagList.splice(index, 1);
         },
     },

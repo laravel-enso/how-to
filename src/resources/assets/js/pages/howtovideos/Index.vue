@@ -9,8 +9,8 @@
                         v-focus
                         type="text"
                         :placeholder="__('video name')"
-                        v-model="video.name"
-                        ref="nameInput">
+                        @key.enter="addTag"
+                        v-model="video.name">
                 </div>
                 <div class="control is-expanded">
                     <input class="input"
@@ -18,16 +18,18 @@
                         :placeholder="__('video description')"
                         v-model="video.description">
                 </div>
-                <div class="control animated fadeIn">
+                <div class="control animated fadeIn"
+                    v-if="video.name">
                     <file-uploader :url="uploadLink"
                         :params="video"
-                        @upload-successful="reset(); getVideos()"
+                        :file-size-limit="20000000"
                         file-key="video"
+                        @upload-successful="reset(); getVideos()"
                         v-if="addingVideo">
                         <div slot="upload-button"
-                            slot-scope="{ openFileBrowser }"
-                            @click="openFileBrowser">
-                            <div class="file">
+                            slot-scope="{ openFileBrowser }">
+                            <div class="file"
+                                @click="openFileBrowser">
                                 <label class="file-label">
                                     <span class="file-cta">
                                         <span class="file-icon">

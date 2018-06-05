@@ -38,6 +38,7 @@ class Storer extends Handler
             });
         } catch (\Exception $exception) {
             $this->fileManager->deleteTempFiles();
+
             throw $exception;
         }
 
@@ -60,7 +61,7 @@ class Storer extends Handler
         return Video::create(
             array_merge([
                 $this->originalName() => $file['original_name'],
-                $this->savedName() => $file['saved_name'],
+                $this->savedName()    => $file['saved_name'],
             ], $this->attributes)
         );
     }
@@ -70,7 +71,7 @@ class Storer extends Handler
         Video::find($this->attributes['id'])
             ->update([
                 $this->originalName() => $file['original_name'],
-                $this->savedName() => $file['saved_name'],
+                $this->savedName()    => $file['saved_name'],
             ]);
 
         return $file;

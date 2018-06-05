@@ -3,9 +3,9 @@
 namespace LaravelEnso\HowToVideos\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\HowToVideos\app\Classes\Storer;
 use LaravelEnso\HowToVideos\app\Classes\Destroyer;
 use LaravelEnso\HowToVideos\app\Classes\Presenter;
+use LaravelEnso\HowToVideos\app\Classes\Storer;
 
 class Video extends Model
 {
@@ -13,7 +13,7 @@ class Video extends Model
 
     protected $fillable = [
         'name', 'description', 'video_original_name', 'video_saved_name',
-        'poster_original_name', 'poster_saved_name'
+        'poster_original_name', 'poster_saved_name',
     ];
 
     protected $appends = ['tagList'];

@@ -7,8 +7,10 @@ use LaravelEnso\HowToVideos\app\Classes\Storer;
 use LaravelEnso\HowToVideos\app\Classes\Destroyer;
 use LaravelEnso\HowToVideos\app\Classes\Presenter;
 
-class HowToVideo extends Model
+class Video extends Model
 {
+    protected $table = 'how_to_videos';
+
     protected $fillable = [
         'name', 'description', 'video_original_name', 'video_saved_name',
         'poster_original_name', 'poster_saved_name'
@@ -18,7 +20,12 @@ class HowToVideo extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(HowToTag::class);
+        return $this->belongsToMany(
+            Tag::class,
+            'how_to_tag_how_to_video',
+            'how_to_video_id',
+            'how_to_tag_id'
+        );
     }
 
     public static function store(array $file, array $attributes)
@@ -35,6 +42,18 @@ class HowToVideo extends Model
             ->run();
     }
 
+    public function removePoster()
+    {
+        (new Destroyer($this))
+            ->poster()
+            ->run();
+
+        $this->update([
+            'poster_saved_name' => null,
+            'poster_original_name' => null,
+        ]);
+    }
+
     public function video()
     {
         return (new Presenter($this))
@@ -47,18 +66,6 @@ class HowToVideo extends Model
         return (new Presenter($this))
             ->poster()
             ->inline();
-    }
-
-    public function removePoster()
-    {
-        (new Destroyer($this))
-            ->poster()
-            ->run();
-
-        $this->update([
-            'poster_saved_name' => null,
-            'poster_original_name' => null,
-        ]);
     }
 
     public function updateWithTags($request)

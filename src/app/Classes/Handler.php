@@ -11,7 +11,9 @@ abstract class Handler
 
     public function __construct()
     {
-        $this->fileManager = new FileManager(config('enso.config.paths.howToVideos'));
+        $this->fileManager = new FileManager(
+            config('enso.config.paths.howToVideos')
+        );
     }
 
     public function video()

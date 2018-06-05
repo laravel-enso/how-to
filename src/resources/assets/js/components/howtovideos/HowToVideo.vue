@@ -2,8 +2,14 @@
 
     <card icon="video"
         :title="video.name"
-        :controls="4">
+        :controls="5">
         <card-control slot="control-1"
+            v-tooltip="video.description">
+            <span class="icon">
+                <fa icon="info-circle"/>
+            </span>
+        </card-control>
+        <card-control slot="control-2"
             v-if="!video.poster_saved_name && canAccess('howTo.posters.store')">
             <file-uploader :url="uploadLink"
                 :params="{ videoId: video.id }"
@@ -17,48 +23,33 @@
                 </span>
             </file-uploader>
         </card-control>
-        <card-control slot="control-2">
-            <v-popover trigger="hover">
-                <span class="icon"
-                    @click="$emit('edit')"
-                    v-if="canAccess('howTo.videos.update')">
-                    <fa :icon="['far', 'edit']"/>
-                </span>
-                <span class="icon"
-                     v-else>
-                    <fa :icon="info"/>
-                </span>
-                <template slot="popover">
-                    <label class="label">{{ __('Description') }}</label>
-                    <p>{{ video.description }}</p>
-                </template>
-            </v-popover>
-        </card-control>
         <card-control slot="control-3"
             v-if="canAccess('howTo.videos.update')">
-            <v-popover trigger="hover">
-                <span class="icon"
-                    @click="tagMode = !tagMode; $emit(tagMode ? 'start-tagging' : 'stop-tagging')">
-                    <fa :icon="tagMode ? 'check' : 'tags'"/>
-                </span>
-                <template slot="popover">
-                    <p>{{ __('Add tags') }}</p>
-                </template>
-            </v-popover>
+            <span class="icon"
+                @click="$emit('edit')">
+                <fa :icon="['far', 'edit']"/>
+            </span>
         </card-control>
         <card-control slot="control-4"
-            v-if="video.poster_saved_name">
-            <popover v-if="canAccess('howTo.posters.destroy')"
-                @confirm="destroyPoster">
+            v-if="canAccess('howTo.videos.update')">
+            <span class="icon"
+                @click="tagging = !tagging; $emit(tagging ? 'start-tagging' : 'stop-tagging')">
+                <fa :icon="tagging ? 'check' : 'tags'"/>
+            </span>
+        </card-control>
+        <card-control slot="control-5"
+            v-if="canAccess('howTo.posters.destroy') && video.poster_saved_name">
+            <popover @confirm="destroyPoster"
+                v-tooltip="__('Remove poster')">
                 <span class="icon is-small">
                     <fa :icon="['far', 'trash-alt']"/>
                 </span>
             </popover>
         </card-control>
-        <card-control slot="control-4"
-            v-else>
-            <popover v-if="canAccess('howTo.videos.destroy')"
-                @confirm="destroyVideo">
+        <card-control slot="control-5"
+            v-else-if="canAccess('howTo.videos.destroy')">
+            <popover @confirm="destroyVideo"
+                v-tooltip="__('Delete video')">
                 <span class="icon is-small">
                     <fa :icon="['far', 'trash-alt']"/>
                 </span>
@@ -83,7 +74,7 @@
                     </span>
                     <a class="delete is-small"
                         @click="removeTag(tag)"
-                        v-if="canAccess('howTo.videos.update')"/>
+                        v-if="canAccess('howTo.videos.update') && tagging"/>
                 </span>
             </div>
         </div>
@@ -92,19 +83,19 @@
 
 <script>
 
-import { VTooltip, VPopover } from 'v-tooltip';
+import { VTooltip } from 'v-tooltip';
 import { videoPlayer } from 'vue-video-player';
 import 'video.js/dist/video-js.css';
 import 'vue-video-player/src/custom-theme.css';
 import fontawesome from '@fortawesome/fontawesome';
-import { faInfo, faTags } from '@fortawesome/fontawesome-free-solid/shakable.es';
+import { faInfo, faTags, faInfoCircle } from '@fortawesome/fontawesome-free-solid/shakable.es';
 import { faTrashAlt, faEdit, faImage } from '@fortawesome/fontawesome-free-regular/shakable.es';
 import Card from '../bulma/Card.vue';
 import CardControl from '../bulma/CardControl.vue';
 import Popover from '../bulma/Popover.vue';
 import FileUploader from '../fileuploader/FileUploader.vue';
 
-fontawesome.library.add([faTrashAlt, faInfo, faTags, faEdit, faImage]);
+fontawesome.library.add([faTrashAlt, faInfo, faTags, faEdit, faImage, faInfoCircle]);
 
 export default {
     name: 'HowToVideo',
@@ -112,7 +103,7 @@ export default {
     directives: { tooltip: VTooltip },
 
     components: {
-        Card, CardControl, Popover, videoPlayer, VPopover, FileUploader,
+        Card, CardControl, Popover, videoPlayer, FileUploader,
     },
 
     props: {
@@ -128,8 +119,7 @@ export default {
 
     data() {
         return {
-            edit: false,
-            tagMode: false,
+            tagging: false,
         };
     },
 
@@ -164,6 +154,7 @@ export default {
                 .then(({ data }) => {
                     this.$toastr.success(data.message);
                     this.video.poster_saved_name = null;
+                    this.video.poster_original_name = null;
                 }).catch(error => this.handleError(error));
         },
         destroyVideo() {
@@ -176,7 +167,6 @@ export default {
         removeTag(tag) {
             const index = this.video.tagList.findIndex(({ id }) => id === tag.id);
             this.video.tagList.splice(index, 1);
-            this.$emit('update');
         },
     },
 };
@@ -184,12 +174,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-    .tooltip-inner.popover-inner {
-        .label {
-            color: #f9f9f9;
-        }
-    }
 
     .card-footer {
         white-space: nowrap;

@@ -3,36 +3,28 @@
 namespace LaravelEnso\HowToVideos\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use LaravelEnso\HowToVideos\app\Models\HowToTag;
+use LaravelEnso\HowToVideos\app\Models\Tag;
 use LaravelEnso\HowToVideos\app\Http\Requests\ValidateTagRequest;
-use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 class TagController extends Controller
 {
     public function index()
     {
-        return HowToTag::all();
+        return Tag::all();
     }
 
     public function store(ValidateTagRequest $request)
     {
-        return HowToTag::create(['name' => $request->get('name')]);
+        return Tag::create(['name' => $request->get('name')]);
     }
 
-    public function update(ValidateTagRequest $request, $id)
+    public function update(ValidateTagRequest $request, Tag $tag)
     {
-        HowToTag::find($id)
-            ->update($request->only(['name']));
+        $tag->update($request->only(['name']));
     }
 
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        $tag = HowToTag::find($id);
-
-        if ($tag->videos()->count()) {
-            throw new ConflictHttpException(__('The tag is used and cannot be deleted'));
-        }
-
         $tag->delete();
     }
 }

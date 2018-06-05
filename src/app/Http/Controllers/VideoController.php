@@ -4,43 +4,43 @@ namespace LaravelEnso\HowToVideos\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use LaravelEnso\HowToVideos\app\Http\Requests\ValidateVideoRequest;
-use LaravelEnso\HowToVideos\app\Models\HowToVideo;
+use LaravelEnso\HowToVideos\app\Models\Video;
 
 class VideoController extends Controller
 {
     public function index()
     {
-        return HowToVideo::all();
+        return Video::all();
     }
 
-    public function show($id)
+    public function show(Video $video)
     {
-        return HowToVideo::find($id)
+        return $video->video();
+
+        return Video::find($id)
             ->video();
     }
 
     public function store(ValidateVideoRequest $request)
     {
-        return HowToVideo::store(
+        return Video::store(
             $request->allFiles(),
             $request->only(['name', 'description'])
         );
     }
 
-    public function update(ValidateVideoRequest $request, $id)
+    public function update(ValidateVideoRequest $request, Video $video)
     {
-        HowToVideo::find($id)
-            ->updateWithTags(
-                $request->only(['name', 'description', 'tagList'])
-            );
+        $video->updateWithTags(
+            $request->only(['name', 'description', 'tagList'])
+        );
 
         return ['message' => __('The video was updated successfully')];
     }
 
-    public function destroy($id)
+    public function destroy(Video $video)
     {
-        HowToVideo::find($id)
-            ->delete();
+        $video->delete();
 
         return ['message' => __('The video file was deleted successfully')];
     }

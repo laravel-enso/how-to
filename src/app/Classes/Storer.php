@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\HowToVideos\app\Classes;
 
-use LaravelEnso\HowToVideos\app\Models\HowToVideo;
+use LaravelEnso\HowToVideos\app\Models\Video;
 use LaravelEnso\ImageTransformer\app\Classes\ImageTransformer;
 
 class Storer extends Handler
@@ -57,7 +57,7 @@ class Storer extends Handler
 
     private function store($file)
     {
-        return HowToVideo::create(
+        return Video::create(
             array_merge([
                 $this->originalName() => $file['original_name'],
                 $this->savedName() => $file['saved_name'],
@@ -67,7 +67,7 @@ class Storer extends Handler
 
     private function update($file)
     {
-        HowToVideo::find($this->attributes['id'])
+        Video::find($this->attributes['id'])
             ->update([
                 $this->originalName() => $file['original_name'],
                 $this->savedName() => $file['saved_name'],

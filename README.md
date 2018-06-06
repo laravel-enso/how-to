@@ -6,9 +6,9 @@
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/HowToVideos/version)](https://packagist.org/packages/laravel-enso/HowToVideos)
 <!--/h-->
 
-How-to video manager for Laravel Enso.
+How-to video manager for [Laravel Enso](https://github.com/laravel-enso/Enso).
 
-[![Watch the demo](https://laravel-enso.github.io/howtovideos/screenshots/Selection_112_thumb.png)](https://laravel-enso.github.io/howtovideos/videos/demo.webm)
+[![Watch the demo](https://laravel-enso.github.io/howtovideos/screenshots/bulma_selection_112_thumb.png)](https://laravel-enso.github.io/howtovideos/videos/bulma_demo.mp4)
 
 <sup>click on the photo to view a short demo in compatible browsers</sup>
 
@@ -17,37 +17,38 @@ How-to video manager for Laravel Enso.
 Allows you to add videos to your application, to show users how to perform a specific action, demonstrate a feature, 
 present a process flow, etc. This is a complementary package to [Tutorial Manager](https://github.com/laravel-enso/TutorialManager).
  
- You can:
- * upload media clips from your computer, setting a title and a description
- * optionally add a better caption picture for each video
- * optionally tag the clips and then filter them using the tags
+ 
+ * easily upload media clips from your computer, setting a title and a description
+ * simple to use tag manager
+ * optionally add a caption/cover picture for each video
+ * optionally tag the clips and then filter them using the tags 
  * permissions dependent controls, where regular users can only view the videos. 
 
 ### Installation
 
-- install the package using composer `composer require laravel-enso/howtovideos`
-- run the migrations `php artisan migrate`
-- inside the `config/laravel-enso.php` configuration file, add the howToVideos path
-```
-'paths'  => [
-    ..., 
-    'howToVideos' => 'howToVideos', 
-    ]
-```  
-- require/import the VueJS component 
-```
-Vue.component('howToVideo', require('./vendor/laravel-enso/components/howToVideos/HowToVideo.vue'));
-```
-- install the JS `vue-video-player video.js` dependencies using npm (`npm install vue-video-player video.js`)
- 
+The component is already included in the [Enso](https://github.com/laravel-enso/Enso) install and should not require any additional installation steps.
+
 ### Notes
 
 Even though the media files are filtered on upload using their mime-types, depending on the encoding and versions, 
 some files might not work, as this is a limitation of the `video.js` library. Experiment and find what works for you.
 
+Depends on:
+ - [Core](https://github.com/laravel-enso/Core) for middleware and user model 
+ - [File manager](https://github.com/laravel-enso/FileManager) for handling files
+ - [Helpers](https://github.com/laravel-enso/Helpers) for utility classes
+ - [Image Transformer](https://github.com/laravel-enso/ImageTransformer) for optimizing the media files
+ - [Select](https://github.com/laravel-enso/Select) for select functionality
+ - [Structure manager](https://github.com/laravel-enso/StructureManager) for the migrations
+ - [VueComponents](https://github.com/laravel-enso/VueComponents) for various VueJS components
+
 ### Publishes
 
-- `php artisan vendor:publish --tag=howToVideos-storage` - the storage folder for the uploaded files
+- `php artisan vendor:publish --tag=howToVideos-storage` - the storage folder that holds the medial files that will be uploaded
+- `php artisan vendor:publish --tag=howToVideos-assets` - the VueJS components
+- `php artisan vendor:publish --tag=enso-assets` - a common alias for when wanting to update the assets,
+once a newer version is released, usually used with the `--force` flag
+
 
 <!--h-->
 ### Contributions

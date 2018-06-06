@@ -9,7 +9,9 @@ class CreateHowToTagsTable extends Migration
     {
         Schema::create('how_to_tags', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('name');
+
             $table->timestamps();
         });
     }

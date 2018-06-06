@@ -49,7 +49,7 @@ class Video extends Model
             ->run();
 
         $this->update([
-            'poster_saved_name'    => null,
+            'poster_saved_name' => null,
             'poster_original_name' => null,
         ]);
     }
@@ -72,7 +72,7 @@ class Video extends Model
     {
         \DB::transaction(function () use ($request) {
             $this->update([
-                'name'        => $request['name'],
+                'name' => $request['name'],
                 'description' => $request['description'],
             ]);
 
@@ -82,7 +82,8 @@ class Video extends Model
 
     public function getTagListAttribute()
     {
-        return $this->tags()->pluck('id');
+        return $this->tags()
+            ->pluck('id');
     }
 
     public function delete()

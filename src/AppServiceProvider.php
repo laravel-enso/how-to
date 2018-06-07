@@ -9,7 +9,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadDependencies();
-        $this->setPublishes();
+        $this->publishesAll();
     }
 
     public function loadDependencies()
@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
     }
 
-    public function setPublishes()
+    public function publishesAll()
     {
         $this->publishes([
             __DIR__.'/storage/app' => storage_path('app'),

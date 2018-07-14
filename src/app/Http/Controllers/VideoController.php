@@ -16,9 +16,6 @@ class VideoController extends Controller
     public function show(Video $video)
     {
         return $video->video();
-
-        return Video::find($id)
-            ->video();
     }
 
     public function store(ValidateVideoRequest $request)

@@ -20,12 +20,12 @@
     "require": {
         "php": ">=7.1.0",
         "laravel-enso/core": "2.11.*",
-        "laravel-enso/filemanager": "2.3.*",
+        "laravel-enso/filemanager": "2.4.*",
         "laravel-enso/helpers": "1.7.*",
         "laravel-enso/imagetransformer": "1.4.*",
-        "laravel-enso/select": "2.4.*",
+        "laravel-enso/select": "2.5.*",
         "laravel-enso/structuremanager": "2.2.*",
-        "laravel-enso/vuecomponents": "2.2.*"
+        "laravel-enso/vuecomponents": "2.3.*"
     },
     "autoload": {
         "psr-4": {

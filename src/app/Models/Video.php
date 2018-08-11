@@ -3,12 +3,15 @@
 namespace LaravelEnso\HowToVideos\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use LaravelEnso\HowToVideos\app\Classes\Storer;
 use LaravelEnso\HowToVideos\app\Classes\Destroyer;
 use LaravelEnso\HowToVideos\app\Classes\Presenter;
-use LaravelEnso\HowToVideos\app\Classes\Storer;
+use LaravelEnso\ActivityLog\app\Traits\LogActivity;
 
 class Video extends Model
 {
+    use LogActivity;
+
     protected $table = 'how_to_videos';
 
     protected $fillable = [
@@ -17,6 +20,10 @@ class Video extends Model
     ];
 
     protected $appends = ['tagList'];
+
+    protected $loggableLabel = 'name';
+
+    protected $loggable = ['name', 'description'];
 
     public function tags()
     {

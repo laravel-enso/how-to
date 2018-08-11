@@ -3,8 +3,8 @@
 namespace LaravelEnso\HowToVideos\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use LaravelEnso\HowToVideos\app\Http\Requests\ValidatePosterRequest;
 use LaravelEnso\HowToVideos\app\Models\Video;
+use LaravelEnso\HowToVideos\app\Http\Requests\ValidatePosterRequest;
 
 class PosterController extends Controller
 {

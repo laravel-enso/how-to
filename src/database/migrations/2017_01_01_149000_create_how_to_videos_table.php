@@ -12,10 +12,6 @@ class CreateHowToVideosTable extends Migration
 
             $table->string('name');
             $table->string('description')->nullable();
-            $table->string('video_original_name');
-            $table->string('video_saved_name');
-            $table->string('poster_original_name')->nullable();
-            $table->string('poster_saved_name')->nullable();
 
             $table->timestamps();
         });

@@ -3,27 +3,27 @@
 namespace LaravelEnso\HowToVideos\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use LaravelEnso\HowToVideos\app\Models\Poster;
 use LaravelEnso\HowToVideos\app\Http\Requests\ValidatePosterRequest;
-use LaravelEnso\HowToVideos\app\Models\Video;
 
 class PosterController extends Controller
 {
-    public function show($id)
+    public function show(Poster $poster)
     {
-        return Video::find($id)
-            ->poster();
+        return $poster->inline();
     }
 
-    public function store(ValidatePosterRequest $request)
+    public function store(ValidatePosterRequest $request, Poster $poster)
     {
-        return Video::find($request->get('videoId'))
-            ->addPoster($request->allFiles());
+        return $poster->store(
+            $request->get('videoId'),
+            $request->file('poster')
+        );
     }
 
-    public function destroy($id)
+    public function destroy(Poster $poster)
     {
-        Video::find($id)
-            ->removePoster();
+        $poster->delete();
 
         return ['message' => __('The poster was deleted successfully')];
     }

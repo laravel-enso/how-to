@@ -2,28 +2,30 @@
 
 namespace LaravelEnso\HowToVideos\app\Models;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\HowToVideos\app\Classes\Storer;
-use LaravelEnso\HowToVideos\app\Classes\Destroyer;
-use LaravelEnso\HowToVideos\app\Classes\Presenter;
+use LaravelEnso\FileManager\app\Traits\HasFile;
 use LaravelEnso\ActivityLog\app\Traits\LogActivity;
+use LaravelEnso\FileManager\app\Contracts\Attachable;
 
-class Video extends Model
+class Video extends Model implements Attachable
 {
-    use LogActivity;
+    use HasFile, LogActivity;
 
     protected $table = 'how_to_videos';
 
-    protected $fillable = [
-        'name', 'description', 'video_original_name', 'video_saved_name',
-        'poster_original_name', 'poster_saved_name',
-    ];
+    protected $fillable = ['name', 'description'];
 
     protected $appends = ['tagList'];
 
     protected $loggableLabel = 'name';
 
     protected $loggable = ['name', 'description'];
+
+    public function poster()
+    {
+        return $this->hasOne(Poster::class);
+    }
 
     public function tags()
     {
@@ -35,51 +37,23 @@ class Video extends Model
         );
     }
 
-    public static function store(array $file, array $attributes)
+    public function store(UploadedFile $file, array $attributes)
     {
-        return (new Storer($file, $attributes))
-            ->video()
-            ->run();
-    }
+        $video = null;
 
-    public function addPoster(array $file)
-    {
-        return (new Storer($file, $this->toArray()))
-            ->poster()
-            ->run();
-    }
+        \DB::transaction(function () use (&$video, $file, $attributes) {
+            $video = $this->create($attributes);
+            $video->upload($file);
+        });
 
-    public function removePoster()
-    {
-        (new Destroyer($this))
-            ->poster()
-            ->run();
-
-        $this->update([
-            'poster_saved_name'    => null,
-            'poster_original_name' => null,
-        ]);
-    }
-
-    public function video()
-    {
-        return (new Presenter($this))
-            ->video()
-            ->inline();
-    }
-
-    public function poster()
-    {
-        return (new Presenter($this))
-            ->poster()
-            ->inline();
+        return $video;
     }
 
     public function updateWithTags($request)
     {
         \DB::transaction(function () use ($request) {
             $this->update([
-                'name'        => $request['name'],
+                'name' => $request['name'],
                 'description' => $request['description'],
             ]);
 
@@ -95,14 +69,15 @@ class Video extends Model
 
     public function delete()
     {
-        if ($this->poster_saved_name) {
-            $this->removePoster();
+        if ($this->poster) {
+            $this->poster->delete();
         }
 
-        (new Destroyer($this))
-            ->video()
-            ->run();
-
         parent::delete();
+    }
+
+    public function folder()
+    {
+        return config('enso.paths.howToVideos');
     }
 }

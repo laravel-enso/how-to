@@ -10,18 +10,19 @@ class VideoController extends Controller
 {
     public function index()
     {
-        return Video::all();
+        return Video::with('poster.file')
+            ->get();
     }
 
     public function show(Video $video)
     {
-        return $video->video();
+        return $video->inline();
     }
 
-    public function store(ValidateVideoRequest $request)
+    public function store(ValidateVideoRequest $request, Video $video)
     {
-        return Video::store(
-            $request->allFiles(),
+        return $video->store(
+            $request->file('video'),
             $request->only(['name', 'description'])
         );
     }
@@ -32,13 +33,17 @@ class VideoController extends Controller
             $request->only(['name', 'description', 'tagList'])
         );
 
-        return ['message' => __('The video was updated successfully')];
+        return [
+            'message' => __('The video was updated successfully')
+        ];
     }
 
     public function destroy(Video $video)
     {
         $video->delete();
 
-        return ['message' => __('The video file was deleted successfully')];
+        return [
+            'message' => __('The video file was deleted successfully')
+        ];
     }
 }

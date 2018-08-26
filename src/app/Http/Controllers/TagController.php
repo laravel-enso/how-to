@@ -3,8 +3,8 @@
 namespace LaravelEnso\HowToVideos\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use LaravelEnso\HowToVideos\app\Http\Requests\ValidateTagRequest;
 use LaravelEnso\HowToVideos\app\Models\Tag;
+use LaravelEnso\HowToVideos\app\Http\Requests\ValidateTagRequest;
 
 class TagController extends Controller
 {

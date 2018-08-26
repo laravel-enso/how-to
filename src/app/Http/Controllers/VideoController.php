@@ -34,7 +34,7 @@ class VideoController extends Controller
         );
 
         return [
-            'message' => __('The video was updated successfully')
+            'message' => __('The video was updated successfully'),
         ];
     }
 
@@ -43,7 +43,7 @@ class VideoController extends Controller
         $video->delete();
 
         return [
-            'message' => __('The video file was deleted successfully')
+            'message' => __('The video file was deleted successfully'),
         ];
     }
 }

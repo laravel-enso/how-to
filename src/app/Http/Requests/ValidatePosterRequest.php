@@ -15,7 +15,7 @@ class ValidatePosterRequest extends FormRequest
     {
         return [
             'poster' => 'image',
-            'videoId' => 'required|exists:how_to_videos,id'
+            'videoId' => 'required|exists:how_to_videos,id',
         ];
     }
 }

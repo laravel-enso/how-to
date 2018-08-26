@@ -40,6 +40,6 @@ class Poster extends Model implements Attachable
 
     public function folder()
     {
-        return config('enso.paths.howToVideos');
+        return config('enso.config.paths.howToVideos');
     }
 }

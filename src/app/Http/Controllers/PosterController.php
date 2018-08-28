@@ -26,7 +26,7 @@ class PosterController extends Controller
         $poster->delete();
 
         return [
-            'message' => __('The poster was deleted successfully')
+            'message' => __('The poster was deleted successfully'),
         ];
     }
 }

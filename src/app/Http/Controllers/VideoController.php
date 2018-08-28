@@ -4,14 +4,17 @@ namespace LaravelEnso\HowToVideos\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use LaravelEnso\HowToVideos\app\Models\Video;
+use LaravelEnso\HowToVideos\app\Http\Resources\Video as Resource;
 use LaravelEnso\HowToVideos\app\Http\Requests\ValidateVideoRequest;
 
 class VideoController extends Controller
 {
     public function index()
     {
-        return Video::with('poster.file')
-            ->get();
+        return Resource::collection(
+            Video::with(['poster', 'tags'])
+                ->get()
+        );
     }
 
     public function show(Video $video)

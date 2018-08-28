@@ -4,18 +4,21 @@ namespace LaravelEnso\HowToVideos\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use LaravelEnso\HowToVideos\app\Models\Tag;
+use LaravelEnso\HowToVideos\app\Http\Resources\Tag as Resource;
 use LaravelEnso\HowToVideos\app\Http\Requests\ValidateTagRequest;
 
 class TagController extends Controller
 {
     public function index()
     {
-        return Tag::all();
+        return Resource::collection(
+            Tag::all()
+        );
     }
 
-    public function store(ValidateTagRequest $request)
+    public function store(ValidateTagRequest $request, Tag $tag)
     {
-        return Tag::create(['name' => $request->get('name')]);
+        return $tag->create(['name' => $request->get('name')]);
     }
 
     public function update(ValidateTagRequest $request, Tag $tag)

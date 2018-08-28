@@ -11,8 +11,6 @@ class Tag extends Model
 
     protected $fillable = ['name'];
 
-    protected $appends = ['selected'];
-
     public function videos()
     {
         return $this->belongsToMany(
@@ -21,11 +19,6 @@ class Tag extends Model
             'how_to_tag_id',
             'how_to_video_id'
         );
-    }
-
-    public function getSelectedAttribute()
-    {
-        return false;
     }
 
     public function delete()

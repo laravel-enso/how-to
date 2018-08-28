@@ -16,7 +16,7 @@ class Poster extends Model implements Attachable
 
     protected $table = 'how_to_posters';
 
-    protected $fillable = [];
+    protected $fillable = ['video_id'];
 
     public function video()
     {
@@ -28,10 +28,7 @@ class Poster extends Model implements Attachable
         $poster = null;
 
         \DB::transaction(function () use (&$poster, $videoId, $file) {
-            $poster = Video::find($videoId)
-                ->poster()
-                ->create();
-
+            $poster = Poster::create(['video_id' => $videoId]);
             $poster->upload($file);
         });
 

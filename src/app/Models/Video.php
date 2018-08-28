@@ -16,8 +16,6 @@ class Video extends Model implements Attachable
 
     protected $fillable = ['name', 'description'];
 
-    protected $appends = ['tagList'];
-
     protected $loggableLabel = 'name';
 
     protected $loggable = ['name', 'description'];
@@ -61,7 +59,7 @@ class Video extends Model implements Attachable
         });
     }
 
-    public function getTagListAttribute()
+    public function tagList()
     {
         return $this->tags()
             ->pluck('id');

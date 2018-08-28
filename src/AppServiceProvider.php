@@ -8,17 +8,18 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadDependencies();
-        $this->publishesAll();
+        $this->load();
+
+        $this->publish();
     }
 
-    public function loadDependencies()
+    public function load()
     {
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
     }
 
-    public function publishesAll()
+    public function publish()
     {
         $this->publishes([
             __DIR__.'/storage/app' => storage_path('app'),

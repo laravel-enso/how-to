@@ -2,13 +2,16 @@
 
 namespace LaravelEnso\HowToVideos\app\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use LaravelEnso\HowToVideos\app\Models\Tag;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use LaravelEnso\HowToVideos\app\Http\Resources\Tag as Resource;
 use LaravelEnso\HowToVideos\app\Http\Requests\ValidateTagRequest;
 
 class TagController extends Controller
 {
+    use ValidatesRequests;
+
     public function index()
     {
         return Resource::collection(

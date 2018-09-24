@@ -2,12 +2,15 @@
 
 namespace LaravelEnso\HowToVideos\app\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use LaravelEnso\HowToVideos\app\Models\Poster;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use LaravelEnso\HowToVideos\app\Http\Requests\ValidatePosterRequest;
 
 class PosterController extends Controller
 {
+    use ValidatesRequests;
+
     public function show(Poster $poster)
     {
         return $poster->inline();

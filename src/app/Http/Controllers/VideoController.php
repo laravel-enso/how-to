@@ -4,14 +4,11 @@ namespace LaravelEnso\HowToVideos\app\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use LaravelEnso\HowToVideos\app\Models\Video;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use LaravelEnso\HowToVideos\app\Http\Resources\Video as Resource;
 use LaravelEnso\HowToVideos\app\Http\Requests\ValidateVideoRequest;
 
 class VideoController extends Controller
 {
-    use ValidatesRequests;
-
     public function index()
     {
         return Resource::collection(

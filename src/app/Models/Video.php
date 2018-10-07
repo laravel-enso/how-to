@@ -5,12 +5,12 @@ namespace LaravelEnso\HowToVideos\app\Models;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\FileManager\app\Traits\HasFile;
-use LaravelEnso\ActivityLog\app\Traits\LogActivity;
+use LaravelEnso\ActivityLog\app\Traits\LogsActivity;
 use LaravelEnso\FileManager\app\Contracts\Attachable;
 
 class Video extends Model implements Attachable
 {
-    use HasFile, LogActivity;
+    use HasFile, LogsActivity;
 
     protected $table = 'how_to_videos';
 

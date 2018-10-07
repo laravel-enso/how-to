@@ -26,6 +26,6 @@ class CreateStructureForHowToVideos extends StructureMigration
     ];
 
     protected $menu = [
-        'name' => 'How To Videos', 'icon' => 'video', 'link' => 'howTo.videos.index', 'has_children' => false, 'order_index' => 999,
+        'name' => 'How To Videos', 'icon' => 'video', 'link' => 'howTo.videos.index', 'has_children' => false, 'order_index' => 1000,
     ];
 }

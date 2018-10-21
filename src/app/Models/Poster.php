@@ -12,6 +12,7 @@ class Poster extends Model implements Attachable
     use HasFile;
 
     protected $optimizeImages = true;
+
     protected $resizesImages = [800, 800];
 
     protected $table = 'how_to_posters';

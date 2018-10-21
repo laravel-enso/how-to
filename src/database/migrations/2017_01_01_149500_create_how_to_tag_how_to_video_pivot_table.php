@@ -9,9 +9,13 @@ class CreateHowToTagHowToVideoPivotTable extends Migration
     {
         Schema::create('how_to_tag_how_to_video', function (Blueprint $table) {
             $table->integer('how_to_tag_id')->unsigned()->index();
-            $table->foreign('how_to_tag_id')->references('id')->on('how_to_tags')->onDelete('cascade');
+            $table->foreign('how_to_tag_id')->references('id')->on('how_to_tags')
+                ->onDelete('cascade');
+
             $table->integer('how_to_video_id')->unsigned()->index();
-            $table->foreign('how_to_video_id')->references('id')->on('how_to_videos')->onDelete('cascade');
+            $table->foreign('how_to_video_id')->references('id')->on('how_to_videos')
+                ->onDelete('cascade');
+
             $table->primary(['how_to_tag_id', 'how_to_video_id']);
         });
     }

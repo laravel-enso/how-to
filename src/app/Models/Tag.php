@@ -14,10 +14,7 @@ class Tag extends Model
     public function videos()
     {
         return $this->belongsToMany(
-            Video::class,
-            'how_to_tag_how_to_video',
-            'how_to_tag_id',
-            'how_to_video_id'
+            Video::class, 'how_to_tag_how_to_video', 'how_to_tag_id', 'how_to_video_id'
         );
     }
 

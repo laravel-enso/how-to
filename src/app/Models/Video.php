@@ -47,16 +47,9 @@ class Video extends Model implements Attachable
         return $video;
     }
 
-    public function updateWithTags($request)
+    public function syncTags($tagList)
     {
-        \DB::transaction(function () use ($request) {
-            $this->update([
-                'name' => $request['name'],
-                'description' => $request['description'],
-            ]);
-
-            $this->tags()->sync($request['tagList']);
-        });
+        $this->tags()->sync($tagList);
     }
 
     public function tagList()

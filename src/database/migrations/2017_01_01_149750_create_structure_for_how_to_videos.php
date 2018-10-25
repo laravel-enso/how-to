@@ -4,10 +4,6 @@ use LaravelEnso\StructureManager\app\Classes\StructureMigration;
 
 class CreateStructureForHowToVideos extends StructureMigration
 {
-    protected $permissionGroup = [
-        'name' => 'howTo', 'description' => 'How To Videos permissions group',
-    ];
-
     protected $permissions = [
         ['name' => 'howTo.videos.index', 'description' => 'How to videos index page', 'type' => 0, 'is_default' => true],
         ['name' => 'howTo.videos.show', 'description' => 'Play video', 'type' => 0, 'is_default' => true],
@@ -26,6 +22,6 @@ class CreateStructureForHowToVideos extends StructureMigration
     ];
 
     protected $menu = [
-        'name' => 'How To Videos', 'icon' => 'video', 'link' => 'howTo.videos.index', 'has_children' => false, 'order_index' => 1000,
+        'name' => 'How To Videos', 'icon' => 'video', 'route' => 'howTo.videos.index', 'has_children' => false, 'order_index' => 1000,
     ];
 }

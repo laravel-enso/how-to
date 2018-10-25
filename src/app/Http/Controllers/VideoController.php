@@ -32,9 +32,8 @@ class VideoController extends Controller
 
     public function update(ValidateVideoRequest $request, Video $video)
     {
-        $video->updateWithTags(
-            $request->only(['name', 'description', 'tagList'])
-        );
+        tap($video)->update($request->except('tagList'))
+            ->syncTags($request->get('tagList'));
 
         return [
             'message' => __('The video was updated successfully'),

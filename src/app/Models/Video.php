@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\FileManager\app\Traits\HasFile;
 use LaravelEnso\ActivityLog\app\Traits\LogsActivity;
 use LaravelEnso\FileManager\app\Contracts\Attachable;
+use LaravelEnso\Multitenancy\app\Traits\SystemConnection;
 
 class Video extends Model implements Attachable
 {
-    use HasFile, LogsActivity;
+    use HasFile, LogsActivity, SystemConnection;
 
     protected $table = 'how_to_videos';
 

@@ -6,11 +6,10 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\FileManager\app\Traits\HasFile;
 use LaravelEnso\FileManager\app\Contracts\Attachable;
-use LaravelEnso\Multitenancy\app\Traits\SystemConnection;
 
 class Poster extends Model implements Attachable
 {
-    use HasFile, SystemConnection;
+    use HasFile;
 
     protected $optimizeImages = true;
 

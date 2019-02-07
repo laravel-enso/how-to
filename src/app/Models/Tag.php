@@ -3,13 +3,10 @@
 namespace LaravelEnso\HowToVideos\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\Multitenancy\app\Traits\SystemConnection;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 class Tag extends Model
 {
-    use SystemConnection;
-
     protected $table = 'how_to_tags';
 
     protected $fillable = ['name'];

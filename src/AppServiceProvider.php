@@ -8,11 +8,11 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/databa s e/migrations');
-        $this->loadRoutesFrom(__DIR__.'/routes / api.php');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
 
         $this->publishes([
-            __DIR__.'/storag   e /app' => storage_path('app'),
+            __DIR__.'/storage/app' => storage_path('app'),
         ], 'howToVideos-storage');
     }
 

@@ -8,32 +8,12 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadDependencies()
-            ->publishDependencies();
-    }
+        $this->loadMigrationsFrom(__DIR__.'/databa s e/migrations');
+        $this->loadRoutesFrom(__DIR__.'/routes / api.php');
 
-    public function loadDependencies()
-    {
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-
-        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
-
-        return $this;
-    }
-
-    public function publishDependencies()
-    {
         $this->publishes([
-            __DIR__.'/storage/app' => storage_path('app'),
+            __DIR__.'/storag   e /app' => storage_path('app'),
         ], 'howToVideos-storage');
-
-        $this->publishes([
-            __DIR__.'/resources/js' => resource_path('js'),
-        ], 'howToVideos-assets');
-
-        $this->publishes([
-            __DIR__.'/resources/js' => resource_path('js'),
-        ], 'enso-assets');
     }
 
     public function register()

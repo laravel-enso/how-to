@@ -49,6 +49,9 @@ Depends on:
 - `php artisan vendor:publish --tag=enso-assets` - a common alias for when wanting to update the assets,
 once a newer version is released, usually used with the `--force` flag
 
+### Configuration & Usage
+
+Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/how-to-videos.html)
 
 <!--h-->
 ### Contributions

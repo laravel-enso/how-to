@@ -13,7 +13,7 @@ class Video extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'poster' => new Poster($this->whenLoaded('poster')),
-            'tagList' => $this->whenLoaded('tags', $this->tagList()),
+            'tagList' => $this->tagList(),
         ];
     }
 }

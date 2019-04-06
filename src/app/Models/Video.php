@@ -28,10 +28,7 @@ class Video extends Model implements Attachable
     public function tags()
     {
         return $this->belongsToMany(
-            Tag::class,
-            'how_to_tag_how_to_video',
-            'how_to_video_id',
-            'how_to_tag_id'
+            Tag::class, 'how_to_tag_how_to_video', 'how_to_video_id', 'how_to_tag_id'
         );
     }
 

@@ -11,9 +11,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        return Resource::collection(
-            Tag::all()
-        );
+        return Resource::collection(Tag::all());
     }
 
     public function store(ValidateTagRequest $request, Tag $tag)

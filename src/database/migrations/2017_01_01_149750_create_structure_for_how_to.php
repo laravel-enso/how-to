@@ -1,8 +1,8 @@
 <?php
 
-use LaravelEnso\StructureManager\app\Classes\StructureMigration;
+use LaravelEnso\Migrator\app\Database\Migration;
 
-class CreateStructureForHowToVideos extends StructureMigration
+class CreateStructureForHowTo extends Migration
 {
     protected $permissions = [
         ['name' => 'howTo.videos.index', 'description' => 'How to videos index page', 'type' => 0, 'is_default' => true],

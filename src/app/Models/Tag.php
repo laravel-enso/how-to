@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\HowToVideos\app\Models;
+namespace LaravelEnso\HowTo\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;

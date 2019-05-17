@@ -1,11 +1,12 @@
 <?php
 
-namespace LaravelEnso\HowToVideos\app\Models;
+namespace LaravelEnso\HowTo\app\Models;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\FileManager\app\Traits\HasFile;
-use LaravelEnso\FileManager\app\Contracts\Attachable;
+use LaravelEnso\Files\app\Traits\HasFile;
+use LaravelEnso\Files\app\Contracts\Attachable;
 
 class Poster extends Model implements Attachable
 {
@@ -13,11 +14,16 @@ class Poster extends Model implements Attachable
 
     protected $optimizeImages = true;
 
-    protected $resizesImages = [800, 800];
+    protected $resizeImages = [
+        'width' => 800,
+        'height' => 800,
+    ];
 
     protected $table = 'how_to_posters';
 
     protected $fillable = ['video_id'];
+
+    protected $folder = 'howToVideos';
 
     public function video()
     {
@@ -28,16 +34,11 @@ class Poster extends Model implements Attachable
     {
         $poster = null;
 
-        \DB::transaction(function () use (&$poster, $videoId, $file) {
+        DB::transaction(function () use (&$poster, $videoId, $file) {
             $poster = Poster::create(['video_id' => $videoId]);
             $poster->upload($file);
         });
 
         return $poster;
-    }
-
-    public function folder()
-    {
-        return config('enso.config.paths.howToVideos');
     }
 }

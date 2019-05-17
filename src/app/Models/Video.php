@@ -1,24 +1,22 @@
 <?php
 
-namespace LaravelEnso\HowToVideos\app\Models;
+namespace LaravelEnso\HowTo\app\Models;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\FileManager\app\Traits\HasFile;
-use LaravelEnso\ActivityLog\app\Traits\LogsActivity;
-use LaravelEnso\FileManager\app\Contracts\Attachable;
+use LaravelEnso\Files\app\Traits\HasFile;
+use LaravelEnso\Files\app\Contracts\Attachable;
 
 class Video extends Model implements Attachable
 {
-    use HasFile, LogsActivity;
+    use HasFile;
 
     protected $table = 'how_to_videos';
 
     protected $fillable = ['name', 'description'];
 
-    protected $loggableLabel = 'name';
-
-    protected $loggable = ['name', 'description'];
+    protected $folder = 'howToVideos';
 
     public function poster()
     {
@@ -36,7 +34,7 @@ class Video extends Model implements Attachable
     {
         $video = null;
 
-        \DB::transaction(function () use (&$video, $file, $attributes) {
+        DB::transaction(function () use (&$video, $file, $attributes) {
             $video = $this->create($attributes);
             $video->upload($file);
         });
@@ -62,10 +60,5 @@ class Video extends Model implements Attachable
         }
 
         parent::delete();
-    }
-
-    public function folder()
-    {
-        return config('enso.config.paths.howToVideos');
     }
 }

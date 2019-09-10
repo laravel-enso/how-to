@@ -33,7 +33,7 @@ class Video extends Model implements Attachable
 
     public function store(UploadedFile $file, array $attributes)
     {
-        if (self::whereHas('file', function($query) use ($file) {
+        if (self::whereHas('file', function ($query) use ($file) {
             $query->whereOriginalName($file->getClientOriginalName());
         })->exists()) {
             throw new VideoException(__('This video was already uploaded'));

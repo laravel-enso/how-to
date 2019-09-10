@@ -38,7 +38,7 @@ class Poster extends Model implements Attachable
         $poster = null;
 
         DB::transaction(function () use (&$poster, $videoId, $file) {
-            $poster = Poster::create(['video_id' => $videoId]);
+            $poster = self::create(['video_id' => $videoId]);
             $poster->upload($file);
         });
 

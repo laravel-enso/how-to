@@ -11,8 +11,7 @@ class Index extends Controller
     public function __invoke()
     {
         return Resource::collection(
-            Video::with(['poster', 'tags'])
-                ->get()
+            Video::with(['poster', 'tags'])->get()
         );
     }
 }

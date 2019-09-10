@@ -16,9 +16,4 @@ class AppServiceProvider extends ServiceProvider
             __DIR__.'/storage/app' => storage_path('app'),
         ], 'howToVideos-storage');
     }
-
-    public function register()
-    {
-        //
-    }
 }

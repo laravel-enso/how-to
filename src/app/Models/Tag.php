@@ -20,7 +20,7 @@ class Tag extends Model
 
     public function delete()
     {
-        if ($this->videos()->count()) {
+        if ($this->videos()->exists()) {
             throw new ConflictHttpException(__('The tag is used and cannot be deleted'));
         }
 

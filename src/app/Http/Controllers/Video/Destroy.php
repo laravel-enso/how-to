@@ -11,8 +11,6 @@ class Destroy extends Controller
     {
         $video->delete();
 
-        return [
-            'message' => __('The video file was deleted successfully'),
-        ];
+        return ['message' => __('The video file was deleted successfully')];
     }
 }

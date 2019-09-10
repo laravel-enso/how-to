@@ -13,8 +13,6 @@ class Update extends Controller
         tap($video)->update($request->except('tagList'))
             ->syncTags($request->get('tagList'));
 
-        return [
-            'message' => __('The video was updated successfully'),
-        ];
+        return ['message' => __('The video was updated successfully')];
     }
 }

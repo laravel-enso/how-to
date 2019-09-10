@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\Files\app\Traits\HasFile;
 use LaravelEnso\Files\app\Contracts\Attachable;
+use LaravelEnso\HowTo\app\Exceptions\VideoException;
 
 class Video extends Model implements Attachable
 {
@@ -32,6 +33,12 @@ class Video extends Model implements Attachable
 
     public function store(UploadedFile $file, array $attributes)
     {
+        if (self::whereHas('file', function($query) use ($file) {
+            $query->whereOriginalName($file->getClientOriginalName());
+        })->exists()) {
+            throw new VideoException(__('This video was already uploaded'));
+        }
+
         $video = null;
 
         DB::transaction(function () use (&$video, $file, $attributes) {
@@ -49,15 +56,12 @@ class Video extends Model implements Attachable
 
     public function tagList()
     {
-        return $this->tags()
-            ->pluck('id');
+        return $this->tags()->pluck('id');
     }
 
     public function delete()
     {
-        if ($this->poster) {
-            $this->poster->delete();
-        }
+        optional($this->poster)->delete();
 
         parent::delete();
     }

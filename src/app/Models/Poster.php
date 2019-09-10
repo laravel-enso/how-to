@@ -12,11 +12,14 @@ class Poster extends Model implements Attachable
 {
     use HasFile;
 
+    private const Width = 800;
+    private const Height = 800;
+
     protected $optimizeImages = true;
 
     protected $resizeImages = [
-        'width' => 800,
-        'height' => 800,
+        'width' => self::Width,
+        'height' => self::Height,
     ];
 
     protected $table = 'how_to_posters';

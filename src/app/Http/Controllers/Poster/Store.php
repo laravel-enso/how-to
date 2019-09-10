@@ -11,8 +11,7 @@ class Store extends Controller
     public function __invoke(ValidatePosterRequest $request, Poster $poster)
     {
         return $poster->store(
-            $request->get('videoId'),
-            $request->file('poster')
+            $request->get('videoId'), $request->file('poster')
         );
     }
 }

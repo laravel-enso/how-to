@@ -18,24 +18,9 @@ For live examples and demos, you may visit [laravel-enso.com](https://www.larave
 
 <sup>click on the photo to view a short demo in compatible browsers</sup>
 
-## Installation
+### Installation, Configuration & Usage
 
-Comes pre-installed in Enso.
-
-## Features
-
-Allows you to add videos to your application, to show users how to perform a specific action, demonstrate a feature, 
-present a process flow, etc. This is a complementary package to [Tutorial Manager](https://github.com/laravel-enso/Tutorials).
- 
- * easily upload media clips from your computer, setting a title and a description
- * simple-to-use tag manager
- * optionally add a caption/cover picture for each video
- * optionally tag the clips and then filter them using the tags 
- * permissions dependent controls, where regular users can only view the videos. 
-
-## Configuration & Usage
-
-Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/how-to-videos.html)
+Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/how-to.html)
 
 ## Contributions
 

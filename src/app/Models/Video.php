@@ -2,11 +2,11 @@
 
 namespace LaravelEnso\HowTo\app\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\Files\app\Traits\HasFile;
 use LaravelEnso\Files\app\Contracts\Attachable;
+use LaravelEnso\Files\app\Traits\HasFile;
 use LaravelEnso\HowTo\app\Exceptions\VideoException;
 
 class Video extends Model implements Attachable

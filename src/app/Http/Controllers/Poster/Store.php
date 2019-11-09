@@ -3,8 +3,8 @@
 namespace LaravelEnso\HowTo\app\Http\Controllers\Poster;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\HowTo\app\Models\Poster;
 use LaravelEnso\HowTo\app\Http\Requests\ValidatePosterRequest;
+use LaravelEnso\HowTo\app\Models\Poster;
 
 class Store extends Controller
 {

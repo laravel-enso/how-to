@@ -7,7 +7,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use LaravelEnso\Files\app\Contracts\Attachable;
 use LaravelEnso\Files\app\Traits\HasFile;
-use LaravelEnso\HowTo\app\Exceptions\VideoException;
+use LaravelEnso\HowTo\app\Exceptions\Video as VideoException;
 
 class Video extends Model implements Attachable
 {
@@ -36,7 +36,7 @@ class Video extends Model implements Attachable
         if (self::whereHas('file', function ($query) use ($file) {
             $query->whereOriginalName($file->getClientOriginalName());
         })->exists()) {
-            throw new VideoException(__('This video was already uploaded'));
+            throw VideoException::alreadyUploaded();
         }
 
         $video = null;

@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelEnso\HowTo\app\Models;
+namespace LaravelEnso\HowTo\App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\Files\app\Traits\HasFile;
-use LaravelEnso\Files\app\Contracts\Attachable;
-use LaravelEnso\HowTo\app\Exceptions\VideoException;
+use LaravelEnso\Files\App\Contracts\Attachable;
+use LaravelEnso\Files\App\Traits\HasFile;
+use LaravelEnso\HowTo\App\Exceptions\Video as Exception;
 
 class Video extends Model implements Attachable
 {
@@ -27,24 +27,26 @@ class Video extends Model implements Attachable
     public function tags()
     {
         return $this->belongsToMany(
-            Tag::class, 'how_to_tag_how_to_video', 'how_to_video_id', 'how_to_tag_id'
+            Tag::class,
+            'how_to_tag_how_to_video',
+            'how_to_video_id',
+            'how_to_tag_id'
         );
     }
 
     public function store(UploadedFile $file, array $attributes)
     {
-        if (self::whereHas('file', function ($query) use ($file) {
-            $query->whereOriginalName($file->getClientOriginalName());
-        })->exists()) {
-            throw new VideoException(__('This video was already uploaded'));
+        if (self::whereHas('file', fn ($query) => $query
+            ->whereOriginalName($file->getClientOriginalName()))->exists()) {
+            throw Exception::exists();
         }
 
-        $video = null;
+        DB::beginTransaction();
 
-        DB::transaction(function () use (&$video, $file, $attributes) {
-            $video = $this->create($attributes);
-            $video->upload($file);
-        });
+        $video = $this->create($attributes);
+        $video->upload($file);
+
+        DB::commit();
 
         return $video;
     }

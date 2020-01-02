@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelEnso\HowTo\app\Models;
+namespace LaravelEnso\HowTo\App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\Files\app\Traits\HasFile;
-use LaravelEnso\Files\app\Contracts\Attachable;
+use LaravelEnso\Files\App\Contracts\Attachable;
+use LaravelEnso\Files\App\Traits\HasFile;
 
 class Poster extends Model implements Attachable
 {
@@ -35,12 +35,12 @@ class Poster extends Model implements Attachable
 
     public function store(int $videoId, UploadedFile $file)
     {
-        $poster = null;
+        DB::beginTransaction();
 
-        DB::transaction(function () use (&$poster, $videoId, $file) {
-            $poster = self::create(['video_id' => $videoId]);
-            $poster->upload($file);
-        });
+        $poster = self::create(['video_id' => $videoId]);
+        $poster->upload($file);
+
+        DB::commit();
 
         return $poster;
     }

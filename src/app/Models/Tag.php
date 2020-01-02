@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\HowTo\app\Models;
+namespace LaravelEnso\HowTo\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
+use LaravelEnso\HowTo\App\Exceptions\Tag as Exception;
 
 class Tag extends Model
 {
@@ -14,14 +14,17 @@ class Tag extends Model
     public function videos()
     {
         return $this->belongsToMany(
-            Video::class, 'how_to_tag_how_to_video', 'how_to_tag_id', 'how_to_video_id'
+            Video::class,
+            'how_to_tag_how_to_video',
+            'how_to_tag_id',
+            'how_to_video_id'
         );
     }
 
     public function delete()
     {
         if ($this->videos()->exists()) {
-            throw new ConflictHttpException(__('The tag is used and cannot be deleted'));
+            throw Exception::inUse();
         }
 
         parent::delete();

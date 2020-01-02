@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\HowTo\app\Http\Controllers\Poster;
+namespace LaravelEnso\HowTo\App\Http\Controllers\Poster;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\HowTo\app\Models\Poster;
+use LaravelEnso\HowTo\App\Models\Poster;
 
 class Destroy extends Controller
 {

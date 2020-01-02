@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\HowTo\app\Http\Controllers\Video;
+namespace LaravelEnso\HowTo\App\Http\Controllers\Video;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\HowTo\app\Models\Video;
-use LaravelEnso\HowTo\app\Http\Resources\Video as Resource;
+use LaravelEnso\HowTo\App\Http\Resources\Video as Resource;
+use LaravelEnso\HowTo\App\Models\Video;
 
 class Index extends Controller
 {

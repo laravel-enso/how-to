@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\HowTo\app\Http\Controllers\Tag;
+namespace LaravelEnso\HowTo\App\Http\Controllers\Tag;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\HowTo\app\Models\Tag;
+use LaravelEnso\HowTo\App\Models\Tag;
 
 class Destroy extends Controller
 {

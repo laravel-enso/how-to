@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\HowTo\app\Http\Controllers\Tag;
+namespace LaravelEnso\HowTo\App\Http\Controllers\Tag;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\HowTo\app\Models\Tag;
-use LaravelEnso\HowTo\app\Http\Requests\ValidateTagRequest;
+use LaravelEnso\HowTo\App\Http\Requests\ValidateTagRequest;
+use LaravelEnso\HowTo\App\Models\Tag;
 
 class Store extends Controller
 {

@@ -2,6 +2,7 @@
     "name": "laravel-enso/how-to",
     "description": "How to video manager for Laravel Enso",
     "keywords": [
+        "laravel",
         "laravel-enso",
         "howto",
         "vidoes"
@@ -18,10 +19,10 @@
         }
     ],
     "require": {
-        "laravel-enso/core": "4.6.*",
-        "laravel-enso/helpers": "1.14.*",
-        "laravel-enso/files": "3.3.*",
-        "laravel-enso/migrator": "1.0.*"
+        "laravel-enso/core": "4.7.*",
+        "laravel-enso/helpers": "1.15.*",
+        "laravel-enso/files": "3.4.*",
+        "laravel-enso/migrator": "1.1.*"
     },
     "autoload": {
         "psr-4": {

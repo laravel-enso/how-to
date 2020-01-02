@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\HowTo\app\Http\Requests;
+namespace LaravelEnso\HowTo\App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,8 +13,6 @@ class ValidateTagRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'name' => 'required',
-        ];
+        return ['name' => 'required'];
     }
 }

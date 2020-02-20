@@ -35,13 +35,10 @@ class Poster extends Model implements Attachable
 
     public function store(int $videoId, UploadedFile $file)
     {
-        DB::beginTransaction();
+        return DB::transaction(function () use ($videoId, $file) {
+            $poster = self::create(['video_id' => $videoId]);
 
-        $poster = self::create(['video_id' => $videoId]);
-        $poster->upload($file);
-
-        DB::commit();
-
-        return $poster;
+            return tap($poster)->upload($file);
+        });
     }
 }

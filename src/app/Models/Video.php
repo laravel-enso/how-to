@@ -41,14 +41,11 @@ class Video extends Model implements Attachable
             throw Exception::exists();
         }
 
-        DB::beginTransaction();
+        return DB::transaction(function () use ($file, $attributes) {
+            $video = $this->create($attributes);
 
-        $video = $this->create($attributes);
-        $video->upload($file);
-
-        DB::commit();
-
-        return $video;
+            return tap($video)->upload($file);
+        });
     }
 
     public function syncTags($tagList)

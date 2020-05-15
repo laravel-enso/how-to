@@ -4,7 +4,6 @@ namespace LaravelEnso\HowTo;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\Files\App\Models\Upload;
 use LaravelEnso\HowTo\App\Models\Video;
 
 class AppServiceProvider extends ServiceProvider

@@ -7,11 +7,12 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use LaravelEnso\Files\App\Contracts\Attachable;
 use LaravelEnso\Files\App\Traits\HasFile;
+use LaravelEnso\Helpers\App\Traits\CascadesMorphMap;
 use LaravelEnso\HowTo\App\Exceptions\Video as Exception;
 
 class Video extends Model implements Attachable
 {
-    use HasFile;
+    use CascadesMorphMap, HasFile;
 
     protected $table = 'how_to_videos';
 

@@ -1,6 +1,6 @@
 # How-To
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1781cd55ca3048eda6fd70066cc7585a)](https://www.codacy.com/app/laravel-enso/how-to?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/how-to&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/cb7c28bb7a52455aa8c9444f3438e550)](https://www.codacy.com/gh/laravel-enso/how-to?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/how-to&amp;utm_campaign=Badge_Grade)
 [![StyleCI](https://github.styleci.io/repos/109481095/shield?branch=master)](https://github.styleci.io/repos/109481095)
 [![License](https://poser.pugx.org/laravel-enso/HowTo/license)](https://https://packagist.org/packages/laravel-enso/HowTo)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/HowTo/downloads)](https://packagist.org/packages/laravel-enso/HowTo)

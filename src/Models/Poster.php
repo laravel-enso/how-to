@@ -7,10 +7,11 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use LaravelEnso\Files\Contracts\Attachable;
 use LaravelEnso\Files\Traits\HasFile;
+use LaravelEnso\Helpers\Traits\CascadesMorphMap;
 
 class Poster extends Model implements Attachable
 {
-    use HasFile;
+    use CascadesMorphMap, HasFile;
 
     private const Width = 800;
     private const Height = 800;

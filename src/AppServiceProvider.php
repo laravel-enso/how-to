@@ -3,6 +3,7 @@
 namespace LaravelEnso\HowTo;
 
 use Illuminate\Support\ServiceProvider;
+use LaravelEnso\HowTo\Models\Poster;
 use LaravelEnso\HowTo\Models\Video;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,6 +14,14 @@ class AppServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
 
+        $this->mapMorphs();
+    }
+
+    private function mapMorphs()
+    {
         Video::morphMap();
+        Poster::morphMap();
+
+        return $this;
     }
 }

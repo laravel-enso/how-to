@@ -21,7 +21,5 @@ class AppServiceProvider extends ServiceProvider
     {
         Video::morphMap();
         Poster::morphMap();
-
-        return $this;
     }
 }

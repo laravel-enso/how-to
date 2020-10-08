@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use LaravelEnso\HowTo\Http\Controllers\Poster\Destroy;
+use LaravelEnso\HowTo\Http\Controllers\Poster\Show;
+use LaravelEnso\HowTo\Http\Controllers\Poster\Store;
 
-Route::namespace('Poster')
-    ->prefix('posters')
+Route::prefix('posters')
     ->as('posters.')
     ->group(function () {
-        Route::post('', 'Store')->name('store');
-        Route::delete('{poster}', 'Destroy')->name('destroy');
-        Route::get('{poster}', 'Show')->name('show');
+        Route::post('', Store::class)->name('store');
+        Route::delete('{poster}', Destroy::class)->name('destroy');
+        Route::get('{poster}', Show::class)->name('show');
     });

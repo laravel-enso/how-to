@@ -44,8 +44,9 @@ class Video extends Model implements Attachable
 
         return DB::transaction(function () use ($file, $attributes) {
             $video = $this->create($attributes);
+            $video->file->upload($file);
 
-            return tap($video)->upload($file);
+            return $video;
         });
     }
 

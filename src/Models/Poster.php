@@ -38,8 +38,9 @@ class Poster extends Model implements Attachable
     {
         return DB::transaction(function () use ($videoId, $file) {
             $poster = self::create(['video_id' => $videoId]);
+            $poster->file->upload($file);
 
-            return tap($poster)->upload($file);
+            return $poster;
         });
     }
 }

@@ -9,6 +9,6 @@ class Show extends Controller
 {
     public function __invoke(Video $video)
     {
-        return $video->inline();
+        return $video->file->inline();
     }
 }

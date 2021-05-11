@@ -9,6 +9,6 @@ class Show extends Controller
 {
     public function __invoke(Poster $poster)
     {
-        return $poster->inline();
+        return $poster->file->inline();
     }
 }

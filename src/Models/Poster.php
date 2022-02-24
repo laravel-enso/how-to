@@ -3,42 +3,48 @@
 namespace LaravelEnso\HowTo\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use LaravelEnso\Files\Contracts\Attachable;
-use LaravelEnso\Files\Traits\HasFile;
-use LaravelEnso\Helpers\Traits\CascadesMorphMap;
+use LaravelEnso\Files\Contracts\OptimizesImages;
+use LaravelEnso\Files\Contracts\ResizesImages;
+use LaravelEnso\Files\Models\File;
 
-class Poster extends Model implements Attachable
+class Poster extends Model implements Attachable, OptimizesImages, ResizesImages
 {
-    use CascadesMorphMap, HasFile;
-
-    private const Width = 800;
-    private const Height = 800;
-
-    protected bool $optimizeImages = true;
-
-    protected array $resizeImages = [
-        'width' => self::Width,
-        'height' => self::Height,
-    ];
-
     protected $table = 'how_to_posters';
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     protected string $folder = 'howToVideos';
+
+    public function file(): Relation
+    {
+        return $this->belongsTo(File::class);
+    }
 
     public function video()
     {
         return $this->belongsTo(Video::class);
     }
 
-    public function store(int $videoId, UploadedFile $file)
+    public function imageWidth(): ?int
     {
-        return DB::transaction(function () use ($videoId, $file) {
+        return 800;
+    }
+
+    public function imageHeight(): ?int
+    {
+        return 800;
+    }
+
+    public function store(int $videoId, UploadedFile $uploadedFile): self
+    {
+        return DB::transaction(function () use ($videoId, $uploadedFile) {
             $poster = self::create(['video_id' => $videoId]);
-            $poster->file->upload($file);
+            $file = File::upload($poster, $uploadedFile);
+            $poster->file()->associate($file)->save();
 
             return $poster;
         });

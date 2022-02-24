@@ -3,22 +3,22 @@
 namespace LaravelEnso\HowTo\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use LaravelEnso\Files\Contracts\Attachable;
-use LaravelEnso\Files\Traits\HasFile;
-use LaravelEnso\Helpers\Traits\CascadesMorphMap;
-use LaravelEnso\HowTo\Exceptions\Video as Exception;
+use LaravelEnso\Files\Models\File;
 
 class Video extends Model implements Attachable
 {
-    use CascadesMorphMap, HasFile;
-
     protected $table = 'how_to_videos';
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
-    protected string $folder = 'howToVideos';
+    public function file(): Relation
+    {
+        return $this->belongsTo(File::class);
+    }
 
     public function poster()
     {
@@ -35,16 +35,12 @@ class Video extends Model implements Attachable
         );
     }
 
-    public function store(UploadedFile $file, array $attributes)
+    public function store(UploadedFile $uploadedFile, array $attributes): self
     {
-        if (self::whereHas('file', fn ($query) => $query
-            ->whereOriginalName($file->getClientOriginalName()))->exists()) {
-            throw Exception::exists();
-        }
-
-        return DB::transaction(function () use ($file, $attributes) {
+        return DB::transaction(function () use ($uploadedFile, $attributes) {
             $video = $this->create($attributes);
-            $video->file->upload($file);
+            $file = File::upload($video, $uploadedFile);
+            $video->file()->associate($file)->save();
 
             return $video;
         });

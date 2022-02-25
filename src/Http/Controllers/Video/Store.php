@@ -3,12 +3,12 @@
 namespace LaravelEnso\HowTo\Http\Controllers\Video;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\HowTo\Http\Requests\ValidateVideoRequest;
+use LaravelEnso\HowTo\Http\Requests\ValidateVideo;
 use LaravelEnso\HowTo\Models\Video;
 
 class Store extends Controller
 {
-    public function __invoke(ValidateVideoRequest $request, Video $video)
+    public function __invoke(ValidateVideo $request, Video $video)
     {
         return $video->store(
             $request->file('video'),

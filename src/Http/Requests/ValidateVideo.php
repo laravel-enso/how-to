@@ -5,7 +5,7 @@ namespace LaravelEnso\HowTo\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use LaravelEnso\Helpers\Traits\FiltersRequest;
 
-class ValidateVideoRequest extends FormRequest
+class ValidateVideo extends FormRequest
 {
     use FiltersRequest;
 

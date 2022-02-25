@@ -4,7 +4,7 @@ namespace LaravelEnso\HowTo\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidatePosterRequest extends FormRequest
+class ValidatePoster extends FormRequest
 {
     public function authorize()
     {

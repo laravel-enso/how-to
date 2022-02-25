@@ -4,7 +4,7 @@ namespace LaravelEnso\HowTo\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidateTagRequest extends FormRequest
+class ValidateTag extends FormRequest
 {
     public function authorize()
     {

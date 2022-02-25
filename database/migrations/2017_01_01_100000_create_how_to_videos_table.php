@@ -11,6 +11,10 @@ class CreateHowToVideosTable extends Migration
         Schema::create('how_to_videos', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->unsignedBigInteger('file_id')->nullable();
+            $table->foreign('file_id')->references('id')->on('files')
+                ->onUpdate('restrict')->onDelete('cascade');
+
             $table->string('name');
             $table->text('description')->nullable();
 

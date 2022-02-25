@@ -14,6 +14,10 @@ class CreateHowToPostersTable extends Migration
             $table->integer('video_id')->unsigned()->index();
             $table->foreign('video_id')->references('id')->on('how_to_videos');
 
+            $table->unsignedBigInteger('file_id')->nullable();
+            $table->foreign('file_id')->references('id')->on('files')
+                ->onUpdate('restrict')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

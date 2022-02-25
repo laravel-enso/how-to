@@ -61,5 +61,7 @@ class Video extends Model implements Attachable
         $this->poster?->delete();
 
         parent::delete();
+
+        $this->file->delete();
     }
 }

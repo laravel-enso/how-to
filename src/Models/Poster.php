@@ -49,4 +49,10 @@ class Poster extends Model implements Attachable, OptimizesImages, ResizesImages
             return $poster;
         });
     }
+
+    public function delete()
+    {
+        parent::delete();
+        $this->file->delete();
+    }
 }

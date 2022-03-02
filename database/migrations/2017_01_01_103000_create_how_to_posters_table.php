@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHowToPostersTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -26,4 +26,4 @@ class CreateHowToPostersTable extends Migration
     {
         Schema::dropIfExists('how_to_posters');
     }
-}
+};

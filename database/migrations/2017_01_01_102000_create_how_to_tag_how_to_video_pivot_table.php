@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHowToTagHowToVideoPivotTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -25,4 +25,4 @@ class CreateHowToTagHowToVideoPivotTable extends Migration
     {
         Schema::dropIfExists('how_to_tag_how_to_video');
     }
-}
+};

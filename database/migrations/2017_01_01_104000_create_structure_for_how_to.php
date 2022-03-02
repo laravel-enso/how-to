@@ -2,7 +2,7 @@
 
 use LaravelEnso\Migrator\Database\Migration;
 
-class CreateStructureForHowTo extends Migration
+return new class extends Migration
 {
     protected array $permissions = [
         ['name' => 'howTo.videos.index', 'description' => 'How to videos index page', 'is_default' => true],
@@ -24,4 +24,4 @@ class CreateStructureForHowTo extends Migration
     protected array $menu = [
         'name' => 'How To Videos', 'icon' => 'video', 'route' => 'howTo.videos.index', 'has_children' => false, 'order_index' => 1000,
     ];
-}
+};

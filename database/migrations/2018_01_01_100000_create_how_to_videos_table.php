@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('how_to_videos', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedBigInteger('file_id')->nullable();
+            $table->unsignedBigInteger('file_id')->nullable()->unique();
             $table->foreign('file_id')->references('id')->on('files')
                 ->onUpdate('restrict')->onDelete('restrict');
 

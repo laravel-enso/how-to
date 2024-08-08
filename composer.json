@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "laravel-enso/core": "^9.0",
+        "laravel-enso/core": "^10.0",
         "laravel-enso/helpers": "^3.0",
         "laravel-enso/files": "^5.0",
         "laravel-enso/migrator": "^2.0"
@@ -34,7 +34,7 @@
             "providers": [
                 "LaravelEnso\\HowTo\\AppServiceProvider"
             ],
-            "aliases": {}
+            "aliases": []
         }
     }
 }

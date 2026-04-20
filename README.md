@@ -70,6 +70,10 @@ Required Enso packages:
 - [`laravel-enso/helpers`](https://docs.laravel-enso.com/backend/helpers.html) [↗](https://github.com/laravel-enso/helpers)
 - [`laravel-enso/migrator`](https://docs.laravel-enso.com/backend/migrator.html) [↗](https://github.com/laravel-enso/migrator)
 
+Companion frontend package:
+
+- [`@enso-ui/how-to`](https://docs.laravel-enso.com/frontend/how-to.html) [↗](https://github.com/enso-ui/how-to)
+
 ## Contributions
 
 are welcome. Pull requests are great, but issues are good too.

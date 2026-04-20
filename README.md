@@ -1,4 +1,4 @@
-# How-To
+# How-to
 
 [![License](https://poser.pugx.org/laravel-enso/how-to/license)](LICENSE)
 [![Stable](https://poser.pugx.org/laravel-enso/how-to/version)](https://packagist.org/packages/laravel-enso/how-to)

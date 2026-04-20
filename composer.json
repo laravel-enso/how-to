@@ -1,11 +1,11 @@
 {
     "name": "laravel-enso/how-to",
-    "description": "How to video manager for Laravel Enso",
+    "description": "Tutorial video management for Laravel Enso",
     "keywords": [
         "laravel",
         "laravel-enso",
         "howto",
-        "vidoes"
+        "videos"
     ],
     "homepage": "https://github.com/laravel-enso/how-to",
     "type": "library",

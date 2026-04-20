@@ -9,11 +9,11 @@ class Video extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
+            'id'          => $this->id,
+            'name'        => $this->name,
             'description' => $this->description,
-            'poster' => new Poster($this->whenLoaded('poster')),
-            'tagList' => $this->tagList(),
+            'poster'      => new Poster($this->whenLoaded('poster')),
+            'tagList'     => $this->tagList(),
         ];
     }
 }

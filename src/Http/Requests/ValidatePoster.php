@@ -14,7 +14,7 @@ class ValidatePoster extends FormRequest
     public function rules()
     {
         return [
-            'poster' => 'image',
+            'poster'  => 'image',
             'videoId' => 'required|exists:how_to_videos,id',
         ];
     }

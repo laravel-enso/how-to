@@ -2,8 +2,7 @@
 
 use LaravelEnso\Migrator\Database\Migration;
 
-return new class extends Migration
-{
+return new class() extends Migration {
     protected array $permissions = [
         ['name' => 'howTo.videos.index', 'description' => 'How to videos index page', 'is_default' => true],
         ['name' => 'howTo.videos.show', 'description' => 'Play video', 'is_default' => true],

@@ -13,7 +13,8 @@ use Tests\TestCase;
 
 class HowToTest extends TestCase
 {
-    use EnsuresTestingFolder, RefreshDatabase;
+    use EnsuresTestingFolder;
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
@@ -36,8 +37,8 @@ class HowToTest extends TestCase
     public function can_store_list_stream_and_delete_videos(): void
     {
         $response = $this->post(route('howTo.videos.store', [], false), [
-            'video' => UploadedFile::fake()->create('guide.mp4', 256, 'video/mp4'),
-            'name' => 'Install Guide',
+            'video'       => UploadedFile::fake()->create('guide.mp4', 256, 'video/mp4'),
+            'name'        => 'Install Guide',
             'description' => 'Step by step',
         ])->assertStatus(201);
 
@@ -67,9 +68,9 @@ class HowToTest extends TestCase
         $secondTag = Tag::create(['name' => 'second']);
 
         $this->patch(route('howTo.videos.update', $video->id, false), [
-            'name' => 'Updated',
+            'name'        => 'Updated',
             'description' => 'Updated description',
-            'tagList' => [$firstTag->id, $secondTag->id],
+            'tagList'     => [$firstTag->id, $secondTag->id],
         ])->assertStatus(200)
             ->assertJsonFragment(['message' => 'The video was updated successfully']);
 
@@ -110,7 +111,7 @@ class HowToTest extends TestCase
 
         $response = $this->post(route('howTo.posters.store', [], false), [
             'videoId' => $video->id,
-            'poster' => UploadedFile::fake()->image('poster.png'),
+            'poster'  => UploadedFile::fake()->image('poster.png'),
         ])->assertStatus(201);
 
         $posterId = $response->json('id');
@@ -130,8 +131,8 @@ class HowToTest extends TestCase
     private function createVideo(string $name): Video
     {
         $response = $this->post(route('howTo.videos.store', [], false), [
-            'video' => UploadedFile::fake()->create('guide.mp4', 256, 'video/mp4'),
-            'name' => $name,
+            'video'       => UploadedFile::fake()->create('guide.mp4', 256, 'video/mp4'),
+            'name'        => $name,
             'description' => 'Stored from helper',
         ])->assertStatus(201);
 

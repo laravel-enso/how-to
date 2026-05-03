@@ -12,7 +12,7 @@ class Store extends Controller
     {
         return $video->store(
             $request->file('video'),
-            $request->validatedExcept('video')
+            $request->safe()->except('video')
         );
     }
 }

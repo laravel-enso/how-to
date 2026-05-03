@@ -10,7 +10,7 @@ class Update extends Controller
 {
     public function __invoke(ValidateVideo $request, Video $video)
     {
-        tap($video)->update($request->validatedExcept('tagList'))
+        tap($video)->update($request->safe()->except('tagList'))
             ->syncTags($request->get('tagList'));
 
         return ['message' => __('The video was updated successfully')];

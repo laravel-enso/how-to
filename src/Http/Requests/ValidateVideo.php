@@ -3,12 +3,9 @@
 namespace LaravelEnso\HowTo\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use LaravelEnso\Helpers\Traits\FiltersRequest;
 
 class ValidateVideo extends FormRequest
 {
-    use FiltersRequest;
-
     public function authorize()
     {
         return true;
